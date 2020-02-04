@@ -5,7 +5,7 @@ const DataFrame = require('dataframe-js').DataFrame;
 const linearAlgebra = require('linear-algebra')(),
     Matrix = linearAlgebra.Matrix;
 
-function show_model() {
+function get_graphics() {
 
     const iris = require('js-datasets-iris')
 
@@ -58,12 +58,18 @@ function show_model() {
     let gr3 = show_scatter(new Matrix(g3).trans())
     let gr_c = show_scatter(cent_trans)
 
+    let arr_scatters = [gr1, gr2, gr3, gr_c]
+
+    return arr_scatters
+}
+
+function show_model() {
+    let arr = get_graphics()
     var layout = {
         width: 1000,
         height: 1000
     }
-
-    plotly.plot([gr1, gr2, gr3, gr_c], layout)
+    plotly.plot(arr, layout)
 }
 
 show_model()
